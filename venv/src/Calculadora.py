@@ -5,7 +5,42 @@ import os
 class Calculadora:
 
     def menu(self):
-        print("Seleccione el número de la opción deseada\n1.-Suma\n2.-Resta\n3.-Multiplicación\n4.-División\n5.-Raiz\n6.-Exponente\n7.-Seno\n8.-Coseno\n9.-Tangente\n0.-Salir")
+        self.clear()
+        operaciones = ["Salir","Suma","Resta", "Multiplicacion", "Division", "Raiz", "Exponente", "Seno", "Coseno", "Tangente"]
+        print("Seleccione el número de la opción deseada:\n")
+        for n in range(len(operaciones)):
+            print(f"{n}.-{operaciones[n]}\n")
+        opc = input("Selecciona una opción: ")
+        try:
+            sel = int(opc)
+        except TypeError:
+            raise TypeError(f"La opción debe ser un número entero, pero ingresó: '{opc}'")
+        except ValueError:
+           sel = -1
+        if sel == 1:
+            self.suma()
+        elif sel == 2:
+            self.resta()
+        elif sel == 3:
+            self.multiplica()
+        elif sel == 4:
+            self.divide()
+        elif sel == 5:
+            self.raizn()
+        elif sel == 6:
+            self.expn()
+        elif sel == 7:
+            self.seno()
+        elif sel == 8:
+            self.coseno()
+        elif sel == 9:
+            self.tangente()
+        elif sel == 0:
+            return False
+        else:
+            print("La opción seleccionada no es válida")
+        input("\nPresione enter para continuar...")
+        return True
 
     def clear(self):
         if os.name == "posix":
@@ -14,7 +49,9 @@ class Calculadora:
             os.system("cls")
 
     def suma(self):
-        print("Modulo suma")
+        self.clear()
+        print("Modulo suma\n")
+        num_1 = input("Ingrese primera cifra")
 
     def resta(self):
         print("Modulo resta")
@@ -47,42 +84,7 @@ def main():
     salir = True
     cal = Calculadora()
     while(salir):
-        cal.clear()
-        cal.menu()
-        opc = input("Selecciona una opción: ")
-        try:
-            sel = int(opc)
-        except TypeError:
-            raise TypeError(f"La opción debe ser un número entero, pero ingresó: '{opc}'")
-        except ValueError:
-            print("\nNo se seleccionó ningun valor")
-            input("\nPresione enter para continuar...")
-            continue
-        if sel == 1:
-            cal.suma()
-        elif sel == 2:
-            cal.resta()
-        elif sel == 3:
-            cal.multiplica()
-        elif sel == 4:
-            cal.divide()
-        elif sel == 5:
-            cal.raizn()
-        elif sel == 6:
-            cal.expn()
-        elif sel == 7:
-            cal.seno()
-        elif sel == 8:
-            cal.coseno()
-        elif sel == 9:
-            cal.tangente()
-        elif sel == 0:
-            salir = False
-            break
-        else:
-            print("La opción seleccionada no es válida")
-        input("\nPresione enter para continuar...")
-
+        salir = cal.menu()
 
 if __name__ == "__main__":
     main()
