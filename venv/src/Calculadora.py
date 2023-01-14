@@ -6,6 +6,8 @@ class Calculadora:
 
     def menu(self):
         self.clear()
+        entrada = [1, 1]
+        resultado = 0
         operaciones = ["Salir","Suma","Resta", "Multiplicacion", "Division", "Raiz", "Exponente", "Seno", "Coseno", "Tangente"]
         print("Seleccione el número de la opción deseada:\n")
         for n in range(len(operaciones)):
@@ -18,27 +20,61 @@ class Calculadora:
         except ValueError:
            sel = -1
         if sel == 1:
-            self.suma()
+            self.clear()
+            print("Modulo de Suma\n")
+            entrada[0] = input("Ingresa la primera cifra: ")
+            entrada[1] = input("Ingresa la segunda cifra: ")
+            resultado = self.suma(entrada[0], entrada[1])
         elif sel == 2:
-            self.resta()
+            self.clear()
+            print("Modulo de Resta\n")
+            entrada[0] = input("Ingresa la primera cifra: ")
+            entrada[1] = input("Ingresa la segunda cifra: ")
+            resultado = self.resta(entrada[0], entrada[1])
         elif sel == 3:
-            self.multiplica()
+            self.clear()
+            print("Modulo de Multiplicación\n")
+            entrada[0] = input("Ingresa la primera cifra: ")
+            entrada[1] = input("Ingresa la segunda cifra: ")
+            resultado = self.multiplica(entrada[0], entrada[1])
         elif sel == 4:
-            self.divide()
+            self.clear()
+            print("Modulo de División\n")
+            entrada[0] = input("Ingresa el dividendo: ")
+            entrada[1] = input("Ingresa el divisor: ")
+            resultado = self.divide(entrada[0], entrada[1])
         elif sel == 5:
-            self.raizn()
+            self.clear()
+            print("Modulo de Raiz\n")
+            entrada[0] = input("Ingresa la base: ")
+            entrada[1] = input("Ingresa el exponente de la raiz: ")
+            resultado = self.raizn(entrada[0], entrada[1])
         elif sel == 6:
-            self.expn()
+            self.clear()
+            print("Modulo de Exponente\n")
+            entrada[0] = input("Ingresa la base: ")
+            entrada[1] = input("Ingresa el exponente: ")
+            resultado = self.expn(entrada[0], entrada[1])
         elif sel == 7:
-            self.seno()
+            self.clear()
+            print("Modulo de Seno en grados\n")
+            entrada[0] = input("Ingresa el ángulo: ")
+            resultado = self.seno(entrada[0])
         elif sel == 8:
-            self.coseno()
+            self.clear()
+            print("Modulo de Coseno en grados\n")
+            entrada[0] = input("Ingresa el ángulo: ")
+            resultado = self.coseno(entrada[0])
         elif sel == 9:
-            self.tangente()
+            self.clear()
+            print("Modulo de Tangente en grados\n")
+            entrada[0] = input("Ingresa el ángulo: ")
+            resultado = self.tangente(entrada[0])
         elif sel == 0:
             return False
         else:
             print("La opción seleccionada no es válida")
+        print(f"El resultado es: {resultado}")
         input("\nPresione enter para continuar...")
         return True
 
@@ -48,34 +84,90 @@ class Calculadora:
         elif os.name == "ce" or os.name == "nt" or os.name ==  "dos":
             os.system("cls")
 
-    def suma(self):
-        self.clear()
-        print("Modulo suma\n")
-        num_1 = input("Ingrese primera cifra")
+    def suma(self, x, y):
+        try:
+            x = float(x)
+            y = float(y)
+            resultado = x + y
+        except Exception as err:
+            print("Error detectado: ", err)
+        return resultado
 
-    def resta(self):
-        print("Modulo resta")
+
+    def resta(self, x, y):
+        try:
+            x = float(x)
+            y = float(y)
+            resultado = x - y
+        except Exception as err:
+            print("Error detectado: ", err)
+        return resultado
     
-    def multiplica(self):
-        print("Modulo multiplicación")
+    def multiplica(self, x, y):
+        try:
+            x = float(x)
+            y = float(y)
+            resultado = x * y
+        except Exception as err:
+            print("Error detectado: ", err)
+        return resultado
     
-    def divide(self):
-        print("Modulo divición")
+    def divide(self, x, y):
+        try:
+            x = float(x)
+            y = float(y)
+            resultado = x / y
+        except Exception as err:
+            print("Error detectado: ", err)
+        return resultado
     
-    def raizn(self):
-        print("Modulo raiz n")
+    def raizn(self, base, exp):
+        try:
+            base = float(base)
+            exp = float(exp)
+            resultado = np.power(base, (1/exp))
+        except Exception as err:
+            print("Error detectado: ", err)
+        return resultado
 
-    def expn(self):
-        print("Modulo exponente n")
+    def expn(self, base, exp):
+        try:
+            base = float(base)
+            exp = float(exp)
+            resultado = np.power(base, exp)
+        except Exception as err:
+            print("Error detectado: ", err)
+        return resultado
 
-    def seno(self):
-        print("Modulo seno")
+    def seno(self, angulo, degree=True):
+        try:
+            angulo = float(angulo)
+            if degree:
+                angulo = np.pi/180 * angulo
+            resultado = np.sin(angulo)
+        except Exception as err:
+            print("Error detectado: ", err)
+        return np.round(resultado,2)
 
-    def coseno(self):
-        print("Modulo coseno")
+    def coseno(self, angulo, degree=True):
+        try:
+            angulo = float(angulo)
+            if degree:
+                angulo = np.pi/180 * angulo
+            resultado = np.cos(angulo)
+        except Exception as err:
+            print("Error detectado: ", err)
+        return np.round(resultado,2)
 
-    def tangente(self):
-        print("Modulo tangente")
+    def tangente(self, angulo, degree=True):
+        try:
+            angulo = float(angulo)
+            if degree:
+                angulo = np.pi/180 * angulo
+            resultado = np.tan(angulo)
+        except Exception as err:
+            print("Error detectado: ", err)
+        return np.round(resultado,2)
 
 
 
