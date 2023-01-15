@@ -67,10 +67,50 @@ class TestClaculadora(unittest.TestCase):
         self.assertEqual(Calculadora.tangente(self,180), 0)
         self.assertEqual(Calculadora.tangente(self,360), 0)
 
-    @unittest.skip('Falta implementacion de errores')
+    #@unittest.skip('Falta implementacion de errores')
     def test_suma_TypeError(self):
-        with self.assertRaises(TypeError):
+        with self.assertRaises(ValueError):
             Calculadora.suma(self,"a",-1)
+
+    def test_resta_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.resta(self,"a",-1)
+
+    def test_multiplica_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.multiplica(self,"a",-1)
+
+    def test_divide_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.divide(self,"a",-1)
+
+    def test_divide_Zero(self):
+        with self.assertRaises(ZeroDivisionError):
+            Calculadora.divide(self,1,0)
+
+    def test_raiz_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.raizn(self,"a",-1)
+
+    def test_raiz_negativa(self):
+        with self.assertRaises(Exception):
+            Calculadora.raizn(self,-27,3)
+
+    def test_seno_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.seno(self,"a")
+
+    def test_coseno_TypeError(self):  
+        with self.assertRaises(ValueError):
+            Calculadora.coseno(self,"a")
+
+    def test_tangente_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.tangente(self,"a")
+
+    def test_tangente_TypeError(self):
+        with self.assertRaises(ValueError):
+            Calculadora.tangente(self,"a")
 
 if __name__ == '__main__':
     unittest.main()

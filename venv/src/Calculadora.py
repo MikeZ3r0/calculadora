@@ -15,66 +15,76 @@ class Calculadora:
         opc = input("Selecciona una opción: ")
         try:
             sel = int(opc)
-        except TypeError:
-            raise TypeError(f"La opción debe ser un número entero, pero ingresó: '{opc}'")
         except ValueError:
-           sel = -1
-        if sel == 1:
-            self.clear()
-            print("Modulo de Suma\n")
-            entrada[0] = input("Ingresa la primera cifra: ")
-            entrada[1] = input("Ingresa la segunda cifra: ")
-            resultado = self.suma(entrada[0], entrada[1])
-        elif sel == 2:
-            self.clear()
-            print("Modulo de Resta\n")
-            entrada[0] = input("Ingresa la primera cifra: ")
-            entrada[1] = input("Ingresa la segunda cifra: ")
-            resultado = self.resta(entrada[0], entrada[1])
-        elif sel == 3:
-            self.clear()
-            print("Modulo de Multiplicación\n")
-            entrada[0] = input("Ingresa la primera cifra: ")
-            entrada[1] = input("Ingresa la segunda cifra: ")
-            resultado = self.multiplica(entrada[0], entrada[1])
-        elif sel == 4:
-            self.clear()
-            print("Modulo de División\n")
-            entrada[0] = input("Ingresa el dividendo: ")
-            entrada[1] = input("Ingresa el divisor: ")
-            resultado = self.divide(entrada[0], entrada[1])
-        elif sel == 5:
-            self.clear()
-            print("Modulo de Raiz\n")
-            entrada[0] = input("Ingresa la base: ")
-            entrada[1] = input("Ingresa el exponente de la raiz: ")
-            resultado = self.raizn(entrada[0], entrada[1])
-        elif sel == 6:
-            self.clear()
-            print("Modulo de Exponente\n")
-            entrada[0] = input("Ingresa la base: ")
-            entrada[1] = input("Ingresa el exponente: ")
-            resultado = self.expn(entrada[0], entrada[1])
-        elif sel == 7:
-            self.clear()
-            print("Modulo de Seno en grados\n")
-            entrada[0] = input("Ingresa el ángulo: ")
-            resultado = self.seno(entrada[0])
-        elif sel == 8:
-            self.clear()
-            print("Modulo de Coseno en grados\n")
-            entrada[0] = input("Ingresa el ángulo: ")
-            resultado = self.coseno(entrada[0])
-        elif sel == 9:
-            self.clear()
-            print("Modulo de Tangente en grados\n")
-            entrada[0] = input("Ingresa el ángulo: ")
-            resultado = self.tangente(entrada[0])
-        elif sel == 0:
-            return False
-        else:
-            print("La opción seleccionada no es válida")
-        print(f"El resultado es: {resultado}")
+            print(f"La opción debe ser un número entero, pero ingresó: '{opc}'")
+            sel = -1
+        try:
+            if sel == 1:
+                self.clear()
+                print("Modulo de Suma\n")
+                entrada[0] = input("Ingresa la primera cifra: ")
+                entrada[1] = input("Ingresa la segunda cifra: ")
+                resultado = self.suma(entrada[0], entrada[1])
+            elif sel == 2:
+                self.clear()
+                print("Modulo de Resta\n")
+                entrada[0] = input("Ingresa la primera cifra: ")
+                entrada[1] = input("Ingresa la segunda cifra: ")
+                resultado = self.resta(entrada[0], entrada[1])
+            elif sel == 3:
+                self.clear()
+                print("Modulo de Multiplicación\n")
+                entrada[0] = input("Ingresa la primera cifra: ")
+                entrada[1] = input("Ingresa la segunda cifra: ")
+                resultado = self.multiplica(entrada[0], entrada[1])
+            elif sel == 4:
+                self.clear()
+                print("Modulo de División\n")
+                entrada[0] = input("Ingresa el dividendo: ")
+                entrada[1] = input("Ingresa el divisor: ")
+                resultado = self.divide(entrada[0], entrada[1])
+            elif sel == 5:
+                self.clear()
+                print("Modulo de Raiz\n")
+                entrada[0] = input("Ingresa la base: ")
+                entrada[1] = input("Ingresa el exponente de la raiz: ")
+                resultado = self.raizn(entrada[0], entrada[1])
+            elif sel == 6:
+                self.clear()
+                print("Modulo de Exponente\n")
+                entrada[0] = input("Ingresa la base: ")
+                entrada[1] = input("Ingresa el exponente: ")
+                resultado = self.expn(entrada[0], entrada[1])
+            elif sel == 7:
+                self.clear()
+                print("Modulo de Seno en grados\n")
+                entrada[0] = input("Ingresa el ángulo: ")
+                resultado = self.seno(entrada[0])
+            elif sel == 8:
+                self.clear()
+                print("Modulo de Coseno en grados\n")
+                entrada[0] = input("Ingresa el ángulo: ")
+                resultado = self.coseno(entrada[0])
+            elif sel == 9:
+                self.clear()
+                print("Modulo de Tangente en grados\n")
+                entrada[0] = input("Ingresa el ángulo: ")
+                resultado = self.tangente(entrada[0])
+            elif sel == 0:
+                return False
+            else:
+                print("La opción seleccionada no es válida")
+        except ValueError as err:
+            print("\nError detectado: ", err)
+            sel = -1
+        except ZeroDivisionError as err:
+            print("\nError detectado: ", err)
+            sel = -1
+        except Exception as err:
+            print("\nError detectado: ", err)
+            sel = -1
+        if sel != -1: 
+            print(f"El resultado es: {resultado}")
         input("\nPresione enter para continuar...")
         return True
 
@@ -89,8 +99,8 @@ class Calculadora:
             x = float(x)
             y = float(y)
             resultado = x + y
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return resultado
 
 
@@ -99,8 +109,8 @@ class Calculadora:
             x = float(x)
             y = float(y)
             resultado = x - y
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return resultado
     
     def multiplica(self, x, y):
@@ -108,8 +118,8 @@ class Calculadora:
             x = float(x)
             y = float(y)
             resultado = x * y
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return resultado
     
     def divide(self, x, y):
@@ -117,17 +127,21 @@ class Calculadora:
             x = float(x)
             y = float(y)
             resultado = x / y
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
+        except ZeroDivisionError:
+            raise ZeroDivisionError("No se puede dividir entre cero")
         return resultado
     
     def raizn(self, base, exp):
         try:
             base = float(base)
             exp = float(exp)
+            if base < 0:
+                raise Exception("No se permite base negativa")
             resultado = np.power(base, (1/exp))
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return resultado
 
     def expn(self, base, exp):
@@ -135,8 +149,8 @@ class Calculadora:
             base = float(base)
             exp = float(exp)
             resultado = np.power(base, exp)
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return resultado
 
     def seno(self, angulo, degree=True):
@@ -145,8 +159,8 @@ class Calculadora:
             if degree:
                 angulo = np.pi/180 * angulo
             resultado = np.sin(angulo)
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return np.round(resultado,2)
 
     def coseno(self, angulo, degree=True):
@@ -155,8 +169,8 @@ class Calculadora:
             if degree:
                 angulo = np.pi/180 * angulo
             resultado = np.cos(angulo)
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return np.round(resultado,2)
 
     def tangente(self, angulo, degree=True):
@@ -164,9 +178,11 @@ class Calculadora:
             angulo = float(angulo)
             if degree:
                 angulo = np.pi/180 * angulo
+            if np.round(np.cos(angulo)) == 0:
+                raise Exception("No se puede determinar tangente para este ángulo")
             resultado = np.tan(angulo)
-        except Exception as err:
-            print("Error detectado: ", err)
+        except ValueError:
+            raise ValueError("El dato ingresado no es un número")    
         return np.round(resultado,2)
 
 
